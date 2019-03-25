@@ -1,0 +1,66 @@
+
+<head>
+<script type type= "text/javascript">
+function previewFile(){  
+  var filename = document.getElementById('imagePath').value;
+  document.getElementById('imagePath').value = filename;
+  alert(filename);
+} 
+</script>
+
+</head>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.todoFormData.id">
+  <div class="form-group">
+    <input name="title" #title="ngModel" [(ngModel)]="service.todoFormData.title" class="form-control"
+      placeholder="Title" required>
+    <div *ngIf="title.invalid && title.touched " class="validation-error">This field required</div>
+  </div>
+
+  <label for="usr"><b>Select Date:</b></label>
+
+  <div class="form-group">
+    <input type="date" name="todate" #todate="ngModel" [(ngModel)]="service.todoFormData.todate" class="form-control">
+  </div>
+
+  <div class="form-group">
+      <label for="usr"><b>Categories:</b></label>
+    <label class="form-check-inline">
+      Done <input class="form-check-input" #gender="ngModel" type="radio" name="todoStatus" value="done" checked="true"
+        [(ngModel)]="service.todoFormData.todoStatus">
+    </label>
+    <label class="form-check-inline">
+      Pending <input class="form-check-input" #gender="ngModel" type="radio" name="todoStatus" value="pending"
+        [(ngModel)]="service.todoFormData.todoStatus">
+    </label>
+  </div>
+
+  <div class="form-group">
+      <label for="usr"><b>Remimber Date:</b></label>
+    <input type="date" name="rememberDate" #rememberDate="ngModel" [(ngModel)]="service.todoFormData.rememberDate"
+      class="form-control">
+  </div>
+
+
+  <div class="form-group">
+    <label class="form-check-inline">
+        <label for="usr"><b>Is Public:</b></label>
+       <input class="form-check-input" #isPublic="ngModel" type="radio" name="isPublic" value="true"
+        [(ngModel)]="service.todoFormData.isPublic">
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label for="usr"><b>Profile:</b></label>
+    <input type="file" name="imagePath" #imagePath="ngModel" [(ngModel)]="service.todoFormData.imagePath"
+      class="form-control" onchange="previewFile()" id="imagePath">
+    <img src="" height="100" alt="Image preview...">
+  </div>
+
+  <div class="form-group">
+    <button type="submit" [disabled]="form.invalid" (click)="onClick()" class="btn btn-lg btn-block btn-info">SUBMIT</button>
+  </div>
+</form>
+
+<router-outlet></router-outlet>

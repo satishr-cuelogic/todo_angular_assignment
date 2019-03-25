@@ -1,0 +1,17 @@
+<app-nav-bar></app-nav-bar>
+<table class="table table-hover">
+  <thead>
+    <th (click)="search()">Name</th>
+    <th>Position</th>
+    <th>Mobile</th>
+  </thead>
+  <tbody>
+    <tr *ngFor ="let emp of list">
+      <td (click)="onEdit(emp)">{{emp.title}}</td>
+      <td (click)="onEdit(emp)">{{emp.todate}}</td>
+      <td (click)="onEdit(emp)">{{emp.todoStatus}}</td>
+      <td><a class="btn text-danger" (click)="onDelete(emp.id)"><i class="fa fa-trash"></i></a></td>
+    </tr>
+  </tbody>
+</table>
+<router-outlet></router-outlet>
